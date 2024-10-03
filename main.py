@@ -14,6 +14,7 @@ archives_list = os.listdir(r"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace
 print(archives_list)
 print("\n")
 for archive in archives_list:
-    print(archive)
+    print(fr"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas\{archive}")
+    
     
     
