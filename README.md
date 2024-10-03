@@ -15,7 +15,9 @@ Este projeto realiza a análise de dados de vendas, mostrando informações deta
 Antes de executar o código, certifique-se de que as seguintes bibliotecas estão instaladas:
 
 ```bash
-pip install pandas plotly ipython
+py -m pip install pandas
+py -m pip install plotly
+py -m pip install ipython
 ```
 
 ## Como Funciona
