@@ -13,8 +13,10 @@ import os
 archives_list = os.listdir(r"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas")
 print(archives_list)
 print("\n")
+
 for archive in archives_list:
-    print(fr"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas\{archive}")
+    if "Vendas" in archive:
+        print(fr"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas\{archive}")
     
     
     
