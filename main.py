@@ -1,18 +1,9 @@
-#Passo 0 - Entender o desafio
-#Passo 1 - Percorrer todos os arquivos da base de dados 
-#Passo 2 - Importar as bases de dados de vendas
-#Passo 3 - Tratar / compilar as bases de dados
-#Passo 4 - Calcular o produto mais vendido (em quantidade)
-#Passo 5 - Calcular o produto que mais faturou (em faturamento)
-#Passo 6 - Calcular a loja / cidade que mais vendeu (em faturamento) - criar um gráfico / dashboard
-
 import os
 import pandas as pd
+import plotly.express as px
 from IPython.display import display
 
 archives_list = os.listdir(r"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas")
-print(archives_list)
-print("\n")
 
 total_table = pd.DataFrame()
 
@@ -21,7 +12,18 @@ for archive in archives_list:
         table = pd.read_csv(rf"C:\Users\Lucas\OneDrive\Área de Trabalho\workspace-python\CursoPython\Vendas\{archive}")
         total_table = pd.concat([total_table, table], ignore_index = True)
         
-display(total_table)
-    
-    
-    
+product_table = total_table.groupby('Produto').sum()
+product_table = product_table[["Quantidade Vendida"]].sort_values(by="Quantidade Vendida", ascending=True)
+display(product_table)
+
+total_table['Faturamento'] = total_table['Quantidade Vendida'] * total_table['Preco Unitario']
+billing_table = total_table.groupby('Produto').sum()
+billing_table = billing_table[["Faturamento"]].sort_values(by="Faturamento", ascending=True)
+display(billing_table)
+
+stores_table = total_table.groupby('Loja').sum()
+stores_table = stores_table[['Faturamento']]
+display(stores_table)
+
+graphic = px.bar(stores_table, x = stores_table.index, y = 'Faturamento') 
+graphic.show()
